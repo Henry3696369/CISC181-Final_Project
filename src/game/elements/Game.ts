@@ -60,7 +60,7 @@ export abstract class Game {
     protected board: GameBoard;
     protected teamA: Team;
     protected teamB: Team;
-    protected turn: string;
+    protected turn: string; //#New Objective: add A,B points to decide the winner.
     constructor(board: GameBoard, teamA: Team, teamB: Team, turn: string) {
         this.board = board;
         this.teamA = teamA;
@@ -68,6 +68,13 @@ export abstract class Game {
         this.turn = turn;
         this.initializeGameBoard();
     }
+    getTeamA(): Team {
+        return this.teamA;
+    }
+    getTeamB(): Team {
+        return this.teamB;
+    }
+    //#New Objective: For convient access to get team A and B.
     getTurn(): string {
         return this.turn;
     }

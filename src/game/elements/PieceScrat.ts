@@ -1,4 +1,5 @@
 import { Piece } from "./Piece";
+import { Location } from "./Location";
 
 /* PieceScrat - Problem 4
 
@@ -51,7 +52,7 @@ export class PieceScrat extends Piece {
     private numAttacks: number;
     private numRecruits: number;
     constructor(
-        symbol: string = "M",
+        symbol: string = "S",
         teamColor: string = "NON",
         hidden: boolean = false,
         original: boolean = true,
@@ -85,7 +86,23 @@ export class PieceScrat extends Piece {
     speak(): string {
         return "Aaaahhhh!";
     }
-    validMovePath(start: Location, end: Location): boolean {}
+    validMovePath(start: Location, end: Location): boolean {
+        if (
+            Math.abs(start.getRow() - end.getRow()) <= 2 &&
+            start.getCol() === end.getCol()
+        ) {
+            return true;
+        }
+        if (
+            (Math.abs(start.getRow() - end.getRow()) === 1 &&
+                Math.abs(start.getCol() - end.getCol()) === 1) ||
+            (Math.abs(start.getRow() - end.getRow()) === 2 &&
+                Math.abs(start.getCol() - end.getCol()) === 2)
+        ) {
+            return true;
+        }
+        return false;
+    }
     spawn(): Piece {
         this.numSpawns += 1;
         return new PieceScrat(

@@ -28,6 +28,10 @@ export class ActionRecruit extends Action {
             .checkValidRecruit(this.startLocation, this.endLocation);
     }
     performAction(): void {
+        let start: BoardSquare = this.game
+            .getGameBoard()
+            .getSquare(this.startLocation);
+        start.getPiece()?.updateAction("recruit");
         let end: BoardSquare = this.game
             .getGameBoard()
             .getSquare(this.endLocation);

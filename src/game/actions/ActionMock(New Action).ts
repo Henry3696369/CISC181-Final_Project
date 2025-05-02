@@ -18,14 +18,14 @@ import { GameS25 } from "../elements/GameS25";
 import { Action } from "./Action";
 import { Location } from "../elements/Location";
 import { BoardSquare } from "../elements/BoardSquare";
-export class ActionCrack extends Action {
+export class ActionMock extends Action {
     constructor(g: GameS25, s: Location, e: Location) {
         super(g, s, e);
     }
     validAction(): boolean {
         return this.game
             .getRules()
-            .checkValidCrack(this.startLocation, this.endLocation);
+            .checkValidMocks(this.startLocation, this.endLocation);
     }
     performAction(): void {
         let start: BoardSquare = this.game
@@ -34,12 +34,12 @@ export class ActionCrack extends Action {
         let end: BoardSquare = this.game
             .getGameBoard()
             .getSquare(this.endLocation);
-        start.getPiece()?.updateAction("crack");
+        start.getPiece()?.updateAction("mock");
 
-        end.crackThisSquare();
-        if (!end.isEmpty()) {
-            this.game.getOpponentTeam().removePieceFromTeam(end.removePiece());
-        }
+        end.getPiece()?.setOriginal(false); // #New Action: Prevent the  opponent from spawning
+        end
+            .getPiece()
+            ?.setSymbol(end.getPiece()!.getSymbol().toLowerCase()[0] + "π"); // #New Action: chage opponent's name
         start.getPiece()?.speak();
         this.game.changeTurn();
     }

@@ -62,6 +62,8 @@ import { ActionAttack } from "./game/actions/ActionAttack";
 import { ActionCrack } from "./game/actions/ActionCrack";
 import { ActionSpawn } from "./game/actions/ActionSpawn";
 import { ActionRecruit } from "./game/actions/ActionRecruit";
+import { PieceOfCake } from "./game/elements/PieceOfCake(New Piece)";
+import { ActionMock } from "./game/actions/ActionMock(New Action)";
 
 export class Controller {
     private game: GameS25;
@@ -137,14 +139,26 @@ export class Controller {
                 return true;
             }
             return false;
+        } else if (actionType === "mock" || actionType === "Mock") {
+            let action: Action = new ActionMock(
+                this.game,
+                startLocation,
+                endLocation,
+            );
+            if (action.validAction()) {
+                action.performAction();
+                return true;
+            }
+            return false;
         }
         return false;
     }
     createTeam(teamColor: string): Team {
         let team: Team = new Team(teamColor, [
             new PieceBlueHen("H", teamColor),
-            new PieceMinion("M", teamColor),
-            new PieceScrat("S", teamColor),
+            //new PieceMinion("M", teamColor),
+            // new PieceScrat("S", teamColor),
+            // new PieceOfCake("C", teamColor),
         ]);
         return team;
     }

@@ -31,6 +31,9 @@ export class TextViewComponent extends WebzComponent {
     @BindValue("message")
     private message: string = "Start Game";
 
+    @BindValue("points")
+    private points: string = "Red: 0 Yellow: 0";
+
     @BindValue("game-board")
     private gameString: string = "Board Goes Here";
 
@@ -80,9 +83,16 @@ export class TextViewComponent extends WebzComponent {
         // of the game
         // set the string representation of the game board
         this.displayGame();
+        this.points =
+            `Red: ${this.controller.getGame().getTeamA().getTeamPoints()}` +
+            " " +
+            `Yellow: ${this.controller.getGame().getTeamB().getTeamPoints()}`;
         // Display whether Game is Over
         if (this.controller.getGame().isGameEnded()) {
-            this.message = "Game Over" + this.controller.getGame().getWinner();
+            this.message =
+                "Game Over! " +
+                this.controller.getGame().getWinner() +
+                " Wins!";
         } else {
             this.message = this.controller.getGame().getRules().getMessage();
         }

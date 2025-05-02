@@ -31,9 +31,17 @@ import { Piece } from "./Piece";
 export class Team {
     private teamColor: string;
     private teamPieces: Piece[];
+    protected teamPoints: number = 0;
     constructor(color: string, pieces: Piece[]) {
         this.teamColor = color;
         this.teamPieces = pieces;
+    }
+    getTeamPoints(): number {
+        return this.teamPoints;
+    }
+
+    increaseTeamPoints() {
+        this.teamPoints += 1;
     }
     getTeamColor(): string {
         return this.teamColor;

@@ -36,15 +36,18 @@ export class GameS25 extends Game {
         if (!this.isGameEnded()) {
             return "No winner yet!";
         } else {
-            if (this.teamA.getTeamPieces().length !== 0) {
-                return this.teamA.getTeamColor();
-            } else if (this.teamB.getTeamPieces().length !== 0) {
-                return this.teamB.getTeamColor();
+            if (this.teamA.getTeamPoints() > this.teamB.getTeamPoints()) {
+                return `${this.teamA.getTeamColor()}`;
+            } else if (
+                this.teamA.getTeamPoints() === this.teamB.getTeamPoints()
+            ) {
+                return "Tie!";
             } else {
-                return "Tie";
+                return `${this.teamB.getTeamColor()}`;
             }
         }
     }
+    // #New Objective: Compare the points to get the winner.
     isGameEnded(): boolean {
         return (
             this.teamA.getTeamPieces().length === 0 ||

@@ -17,7 +17,7 @@ export class PieceBlueHen extends Piece {
     private numAttacks: number;
 
     constructor(
-        symbol: string = "H",
+        symbol: string = "Hen",
         teamColor: string = "NON",
         hidden: boolean = false,
         original: boolean = true,

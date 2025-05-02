@@ -35,6 +35,7 @@ export class ActionSpawn extends Action {
         let start: BoardSquare = this.game
             .getGameBoard()
             .getSquare(this.startLocation);
+        start.getPiece()?.updateAction("spawn");
         let end: BoardSquare = this.game
             .getGameBoard()
             .getSquare(this.endLocation);

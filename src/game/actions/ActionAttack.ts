@@ -18,6 +18,7 @@ import { GameS25 } from "../elements/GameS25";
 import { Action } from "./Action";
 import { Location } from "../elements/Location";
 import { Piece } from "../elements/Piece";
+import { BoardSquare } from "../elements/BoardSquare";
 export class ActionAttack extends Action {
     constructor(g: GameS25, s: Location, e: Location) {
         super(g, s, e);
@@ -28,6 +29,10 @@ export class ActionAttack extends Action {
             .checkValidAttack(this.startLocation, this.endLocation);
     }
     performAction(): void {
+        let start: BoardSquare = this.game
+            .getGameBoard()
+            .getSquare(this.startLocation);
+        start.getPiece()?.updateAction("Attack");
         let removed: Piece | null = this.game
             .getGameBoard()
             .getSquare(this.endLocation)
@@ -38,7 +43,15 @@ export class ActionAttack extends Action {
             .getSquare(this.startLocation)
             .removePiece();
         this.game.getGameBoard().getSquare(this.endLocation).setPiece(moved);
-        removed?.speak();
+        if (removed?.getSymbol().includes("π")) {
+            this.game.getCurrentTeam().increaseTeamPoints();
+            this.game.getCurrentTeam().increaseTeamPoints();
+        } else {
+            this.game.getCurrentTeam().increaseTeamPoints();
+        }
+        //#New Objective: If the opponent's piece name has pai, the current team will gain 2 points
+        // Otherwise, 1 point.
+        removed!.speak();
         this.game.changeTurn();
     }
 }
