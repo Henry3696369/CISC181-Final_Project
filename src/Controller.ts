@@ -156,9 +156,9 @@ export class Controller {
     createTeam(teamColor: string): Team {
         let team: Team = new Team(teamColor, [
             new PieceBlueHen("H", teamColor),
-            //new PieceMinion("M", teamColor),
-            // new PieceScrat("S", teamColor),
-            // new PieceOfCake("C", teamColor),
+            new PieceMinion("M", teamColor),
+            new PieceScrat("S", teamColor),
+            new PieceOfCake("C", teamColor),
         ]);
         return team;
     }

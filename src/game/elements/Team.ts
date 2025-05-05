@@ -43,6 +43,7 @@ export class Team {
     increaseTeamPoints() {
         this.teamPoints += 1;
     }
+    // #New Objective: To get points by attacking.
     getTeamColor(): string {
         return this.teamColor;
     }

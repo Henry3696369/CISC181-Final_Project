@@ -17,10 +17,10 @@ export class MainComponent extends WebzComponent {
     constructor() {
         super(html, css);
         // create an instance of controller
-        this.controller = new Controller(4, 5);
+        this.controller = new Controller(5, 5);
         // create a TextViewComponent and pass it the controller
         const textViewComponent = new TextViewComponent(this.controller);
         // add the text-view component to the main content
-        this.addComponent(textViewComponent, "game"); 
+        this.addComponent(textViewComponent, "game");
     }
 }

@@ -31,8 +31,8 @@ export class PieceOfCake extends Piece {
         if (action === "mock") {
             this.increaseNumMocks();
         }
-        if (this.getNumMocks() === 2) {
-            this.actionAllowed.push("attack"); // If the piece mock 2 pieces, It will have new skill - Attack! #New Piece
+        if (this.getNumMocks() === 1) {
+            this.actionAllowed.push("attack"); // If the piece mock 1 pieces, It will have new skill - Attack! #New Piece
         }
     }
     getNumMocks(): number {
